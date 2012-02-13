@@ -193,7 +193,7 @@ QMouseEvent::~QMouseEvent()
     Qt::KeyButtonMask.
 */
 QMouseEvent::QMouseEvent(Type type, const QPoint &pos, Qt::ButtonState button, int state)
-#ifdef QT_WEBOS
+#ifndef QT_WEBOS
     : QInputEvent(type), p(pos), b((Qt::MouseButton)button)
 #else // QT_WEBOS
     : QInputEvent(type), p(pos), b((Qt::MouseButton)button), isCanceled (false)
@@ -212,7 +212,7 @@ QMouseEvent::QMouseEvent(Type type, const QPoint &pos, Qt::ButtonState button, i
 */
 QMouseEvent::QMouseEvent(Type type, const QPoint &pos, const QPoint &globalPos,
                          Qt::ButtonState button, int state)
-#ifndef // QT_WEBOS
+#ifndef QT_WEBOS
     : QInputEvent(type), p(pos), g(globalPos), b((Qt::MouseButton)button)
 #else // QT_WEBOS
     : QInputEvent(type), p(pos), g(globalPos), b((Qt::MouseButton)button), isCanceled (false)
